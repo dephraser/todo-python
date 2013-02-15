@@ -13,6 +13,8 @@ class Task:
 
     def __init__(self, task_string):
         """
+        Takes a string of a task and converts it into the constiuant parts of
+        the task
         """
         pass
     
@@ -45,3 +47,6 @@ class TaskList:
     
     def __iter__(self):
         return self.tasks.__iter__()
+    
+    def __len__(self):
+        return len(self.tasks)
