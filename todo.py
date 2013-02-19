@@ -16,7 +16,7 @@ class Task:
         Takes a string of a task and converts it into the constiuant parts of
         the task
         """
-        pass
+        self.original = task_string
     
     # These are all the other way around as A is more important than B, but
     # B > A in the alphabet. Having any priority should be above tasks with no
