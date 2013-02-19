@@ -18,6 +18,18 @@ class Task:
         """
         pass
     
+    # These are all the other way around as A is more important than B, but
+    # B > A in the alphabet. Having any priority should be above tasks with no
+    # priority
+    def __cmp__(self, other):
+
+        if not(self.priority):
+            return -1
+        elif not(other.priority):
+            return 1
+        else:
+            return cmp(other.priority, self.priority)
+
 class TaskList:
 
     tasks = []

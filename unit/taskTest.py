@@ -9,7 +9,7 @@ class TestTask(unittest.TestCase):
         task = todo.Task("(A) Hello World")
         self.assertEqual(task.priority, "A")
 
-    def test_recognise_only_at_start(self):
+    def test_recognise_priority_only_at_start(self):
         
         task = todo.Task("Hello World (A)")
         self.assertEqual(task.priority, None)
@@ -47,30 +47,22 @@ class TestTask(unittest.TestCase):
     def test_comparable(self):
 
         task0 = todo.Task("(A) This is a high task")
+        task0.priority = "B"
         task1 = todo.Task("(B) This is a lower task")
+        task1.priority = "A"
 
-        compare = task0 > task1
+        self.assertTrue((task0 < task1))
+        self.assertFalse((task0 > task1))
+    
+    def test_comparable_priority(self):
 
-        self.assertTrue(compare)
+        task0 = todo.Task("This is a task")
+        task0.priority = ""
+        task1 = todo.Task("(B) This is a high task")
+        task1.priority = "B"
 
-    def test_comparable_with_no_priority(self):
-
-        task0 = todo.Task("(B) This is a high task")
-        task1 = todo.Task("This is a lower task")
-
-        compare = task0 > task1
-
-        self.assertTrue(compare)
-        
-
-    def test_comparable_with_no_prioritys(self):
-
-        task0 = todo.Task("This is a meh task")
-        task1 = todo.Task("This is a equally meh task")
-
-        compare = task0 == task1
-
-        self.assertTrue(compare)
+        self.assertTrue((task0 < task1))
+        self.assertFalse((task1 < task0))
         
     def test_recognise_dates(self):
 
